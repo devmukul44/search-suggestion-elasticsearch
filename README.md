@@ -1,5 +1,7 @@
 # Search Suggestions in Elasticsearch
 
+Elasticsearch Flask Application written in Python to implement Search Suggestions, leveraging Fuzzy Search in elasticsearch.
+
 ## Download Elasticsearch 2.4
 
 * Download elasticsearch version - 2.4 (https://download.elastic.co/elasticsearch/release/org/elasticsearch/distribution/tar/elasticsearch/2.4.0/elasticsearch-2.4.0.tar.gz)
@@ -124,3 +126,20 @@ In this project **Custom analyzer** is used during mapping.
     }
 
 ```
+
+## Problem Statement
+
+* You are given a dataset named sample.learn.logs.2016.json.gz containing a sample of search queries on website from 2016, with the following characteristics:
+    * Data is in json format
+    * Each record lists a specific search term, together with some related meta data
+* Create a subset of this initial dataset as follows:
+    * Retain only records where the result_type field is SR
+    * Let this pruned dataset be called Q
+* Create a web UI for querying this search log data with the following characteristics
+    * Frontend UI needs to have only a simple textbox, and optionally, a Submit button
+    * User enters search text T in the text box
+    * On pressing Return in the textbox or clicking the Submit button, your system should pass the search text T to a backend server
+    * The backend server returns, to the frontend UI, the search volume V associated with all log search queries Q’ from Q that are prefixed with the search text T, subject to the constraints below:
+        * Your system must be smart enough to incorporate basic fuzziness (case insensitive, punctuation insensitive) and forgive minor spelling mistakes in the prefix matching
+        * If search text T contains 3+ characters, your system should return all search queries Q’ that are at most 2 edit distance away from T
+    * The frontend UI displays all returned (Q’, V) in descending order of V
