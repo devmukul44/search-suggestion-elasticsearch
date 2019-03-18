@@ -1,0 +1,101 @@
+{
+  "template": "search_logs",
+  "settings": {
+    "analysis": {
+      "analyzer": {
+        "custom_analyzer": {
+          "tokenizer": "ngram_tokenizer",
+          "filter": [
+            "english_possessive_stemmer",
+            "lowercase",
+            "custom_english_stop",
+            "custom_stemmer"
+          ]
+        }
+      },
+      "filter": {
+        "custom_english_stop": {
+          "type": "stop",
+          "stopwords": "_english_"
+        },
+        "custom_stemmer": {
+          "type": "stemmer",
+          "language": "english"
+        },
+        "english_possessive_stemmer": {
+          "type": "stemmer",
+          "language": "possessive_english"
+        }
+      },
+      "tokenizer": {
+        "ngram_tokenizer": {
+          "type": "nGram",
+          "min_gram": "3",
+          "max_gram": "3",
+          "token_chars": [
+            "letter",
+            "digit"
+          ]
+        }
+      }
+    }
+  },
+  "mappings": {
+    "logs": {
+      "properties": {
+        "_vs": {
+          "type": "string",
+          "index": "not_analyzed"
+        },
+        "action": {
+          "type": "string",
+          "index": "not_analyzed"
+        },
+        "log_type": {
+          "type": "string",
+          "index": "not_analyzed"
+        },
+        "property": {
+          "type": "string",
+          "index": "not_analyzed"
+        },
+        "record_created_at": {
+         "type": "string",
+          "index": "not_analyzed"
+        },
+        "result_count": {
+          "type": "string",
+          "index": "not_analyzed"
+        },
+        "result_type": {
+          "type": "string",
+          "index": "not_analyzed"
+        },
+        "search_term": {
+          "type": "string",
+          "analyzer": "custom_analyzer"
+        },
+        "session_id": {
+          "type": "string",
+          "index": "not_analyzed"
+        },
+        "timestamp": {
+          "type": "string",
+          "index": "not_analyzed"
+        },
+        "user_id": {
+          "type": "string",
+          "index": "not_analyzed"
+        },
+        "v_id": {
+          "type": "string",
+          "index": "not_analyzed"
+        },
+        "web_session_id": {
+          "type": "string",
+          "index": "not_analyzed"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,22 @@
+*.pyc
+*.swp
+*.swo
+*.log
+.ipynb_checkpoints
+*~
+.vscode/
+*.env
+
+# IntelliJ IDE Specific Ignore Rules
+.idea/
+project/target/
+
+# Mac OSX Specific
+*.DS_Store
+
+#virtual environment
+venv/
+
+# output directory
+resources/output/
+resources/persist/
